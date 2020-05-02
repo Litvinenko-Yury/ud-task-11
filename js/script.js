@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function () {
     /*======================*/
     /*===script reverse-timer*/
 
-    let deadline = '2020-04-30'; /*это строка; можем её получть, например от сервера, или от пользователя*/
+    let deadline = '2020-05-02'; /*это строка; можем её получить, например от сервера, или от пользователя*/
 
     function getTimeRemaining(endtime) {
         /*эта функция вычисляет остаток времени до deadline*/
@@ -105,4 +105,46 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     setClock('timer', deadline);/*вызов функции, которой передаются в качестве аргументов id блока и переменная deadline*/
+
+
+    /*======================*/
+    /*===script modal*/
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+    function modalOpen() { /*функция открыть-modal*/
+        overlay.style.display = 'block';
+        more.classList.add('more-splash'); /*контекст - это кнопка .more*/
+        document.body.style.overflow = 'hidden';
+    }
+
+    function modalClose() {/*функция закрытия modal*/
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');/*здесь при использовании this контекстом вызова будет элемент-крестик, а нам нужна кнопка .more. Поэтому явно указываем кнопку .more*/
+        document.body.style.overflow = 'auto';
+    }
+
+    more.addEventListener('click', function () { /*обработчик события на кнопку .more; запускаем функцию открыть-modal*/
+        console.log('click открыть modal');
+        modalOpen();
+    });
+
+    close.addEventListener('click', function () { /*обработчик события на крестик .close; запускаем функцию закрыть-modal*/
+        console.log('click закрыть modal');
+        modalClose();
+    })
+
+    /*======================*/
+    /*===script tab-modal*/
+    let tabDescBtn = document.querySelectorAll('.description-btn'); //получил коллекцию
+    console.log(tabDescBtn);
+    console.log(tabDescBtn.length);
+
+    for (let i = 0; i <= tabDescBtn.length - 1; i++) {
+        console.log('i = ' + i);
+        tabDescBtn[i].addEventListener('click', function () { /*навешиваем на все элементы коллекции обработчик события на кнопку .more; запускаем функцию открыть-modal*/
+            modalOpen();
+        })
+    }
 });

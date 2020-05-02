@@ -3,7 +3,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
     /*======================*/
     /*===script tabs*/
-
     let tab = document.querySelectorAll('.info-header-tab'),
         info = document.querySelector('.info-header'),
         tabContent = document.querySelectorAll('.info-tabcontent');
@@ -137,11 +136,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
     /*======================*/
     /*===script tab-modal*/
-    let tabDescBtn = document.querySelectorAll('.description-btn'); //получил коллекцию
+    let infoWrap = document.querySelector('.info');
+    console.log(infoWrap);
 
-    for (let i = 0; i <= tabDescBtn.length - 1; i++) {
-        tabDescBtn[i].addEventListener('click', function () { /*навешиваем на все элементы коллекции обработчик события на кнопку .more; запускаем функцию открыть-modal*/
-            modalOpen();
-        })
-    }
+    infoWrap.addEventListener('click', function (event) {
+        let target = event.target; // где дыл клик?
+        console.log(target);
+
+        if (target.classList.contains('description-btn')) {
+            console.log('click на .description-btn');
+            modalOpen(); // открыть modal
+        }
+    });
 });

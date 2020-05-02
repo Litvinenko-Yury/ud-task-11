@@ -138,11 +138,8 @@ window.addEventListener('DOMContentLoaded', function () {
     /*======================*/
     /*===script tab-modal*/
     let tabDescBtn = document.querySelectorAll('.description-btn'); //получил коллекцию
-    console.log(tabDescBtn);
-    console.log(tabDescBtn.length);
 
     for (let i = 0; i <= tabDescBtn.length - 1; i++) {
-        console.log('i = ' + i);
         tabDescBtn[i].addEventListener('click', function () { /*навешиваем на все элементы коллекции обработчик события на кнопку .more; запускаем функцию открыть-modal*/
             modalOpen();
         })
